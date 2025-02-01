@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <!-- Creating a div  -->
+        <div class="mainDiv"> 
+            <div> 
+                <img class="logoImage" src="{{ url_for('.static', filename='images/logo.webp')}}" />
+            </div>
+            <div class="mainHeader"> 
+                <h3 class="color"> Facial Recognition Application </h3>
+            </div>
+
+            <div> 
+                <label for="email"> Email Address </label> <br> 
+                <input type="text" placeholder="Email" />
+            </div>
+            <div>
+                <label for="password"> Password </label> <br> 
+                <input type="password" placeholder="Password" /> 
+            </div>
+            <div> 
+                <button class="loginBtn"> LOGIN </button> 
+            </div>
+        </div>
+
+
+
+    <!-- Adding javascript -->
+    <script src="{{ url_for('.static', filename='js/home.js') }}"></script>
+</body>
+</html>
