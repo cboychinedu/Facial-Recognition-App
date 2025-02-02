@@ -16,9 +16,10 @@ body {
     width: 340px;
 }
 .logoImage {
-    height: 247px;
+    height: 189px;
     border-radius: 7px;
-    box-shadow: 1px 3px 49px -12px
+    box-shadow: 1px 3px 49px -12px;
+    width: 104%;
 }
 .mainDiv input { 
     width: 100%;
@@ -43,6 +44,7 @@ body {
     font-size: 11px;
 }
 .registerHereHeader {
+    margin-top: 4px;
     margin-bottom: 0px;
 }
 .loginBtn {
