@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/register.css') }}">
+    <title>Register Here</title>
 </head>
-<body>
+<body> 
+    <!-- Creating the main div -->
+     <div class="mainDiv">
+        <div> 
+            <img class="logoImage" src="{{ url_for('.static', filename='images/logo.webp')}}" />
+        </div>
+        <div class="mainHeader"> 
+            <h3 class="registerHereHeader"> Register Here  </h3>
+        </div>
+        <div> 
+            <label for="firstname"> Firstname </label> <br> 
+            <input type="text" placeholder="Enter firstname here..." /> 
+        </div>
+        <div> 
+            <label for="lastname"> Lastname </label> <br> 
+            <input type="text" placeholder="Enter lastname here..." /> 
+        </div>
+        <div> 
+            <label for="email"> Email Address </label> <br> 
+            <input type="email" placeholder="Enter your email address here..." /> 
+        </div>
+        <div> 
+            <label for="password"> Password </label><br> 
+            <input type="password" placeholder="Enter your password here..."  /> 
+        </div>
+        <div> 
+            <button class="registerBtn"> REGISTER </button>
+            <a href="/" class="loginBtn"> LOGIN </a>
+        </div>
+     </div>
     
 </body>
 </html>

@@ -3,54 +3,49 @@ body {
     color: black; 
     font-family: 'Poppins';
 }
-/* .color {
-    color: white; 
-} */
-.imageClass {
-    height: 200px;
-    width: 200px; 
-    border: 2px solid green; 
-}
 .mainDiv {
     display: grid;
     justify-content: center;
     align-items: center;
     justify-items: center;
     align-content: center;
-    margin-top: 90px;
+    margin-top: 72px;
 }
 .mainDiv div { 
     margin-bottom: 13px;
     width: 340px;
-}
-.mainHeader {
-    text-align: center;
-}
-
-.mainDiv input { 
-    width: 100%;
-    height: 34px;
-    padding-left: 10px;
-    outline: 1px solid #888888;
-    border-radius: 5px;
-    border: 1px solid #e3e3e3;
-}
-.loginBtn { 
-    height: 37px;
-    width: 48%;
-    margin-top: 13px;
-    background: #7070e9;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    border: none;
 }
 .logoImage {
     height: 247px;
     border-radius: 7px;
     box-shadow: 1px 3px 49px -12px
 }
+.mainDiv input { 
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+    outline: 1px solid #888888;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+}
+.mainDiv div label {
+    font-size: 14px;
+}
 .registerBtn {
+    height: 37px;
+    width: 41%;
+    margin-top: 13px;
+    background: #7070e9;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 11px;
+}
+.registerHereHeader {
+    margin-bottom: 0px;
+}
+.loginBtn {
     font-size: 12px;
     margin-left: 20px;
     color: #245946;

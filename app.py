@@ -9,6 +9,7 @@ from datetime import timedelta
 
 # Importing the views 
 from Home.routes import home
+from Register.routes import register
 from About.routes import about
 
 # Creating the flask application 
@@ -24,6 +25,7 @@ CORS(app)
 # Register the views using the "app.register" function 
 app.register_blueprint(home, url_prefix="/")
 app.register_blueprint(about, url_prefix="/about")
+app.register_blueprint(register, url_prefix="/register")
 
 # Running the flask application 
 if __name__ == "__main__":
