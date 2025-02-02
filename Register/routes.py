@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
 # Importing the necessary modules 
-import os 
-import sqlite3 
-from flask import request, jsonify
-from flask import Blueprint 
-from flask import session, flash 
-from flask import render_template, redirect, url_for 
+import os
+import sqlite3
+import bcrypt
+from flask import request, jsonify, Blueprint, session, flash, render_template, redirect, url_for
 
 # Setting the path to the database 
 databasePath = os.sep.join(['Database', 'database.db'])
@@ -25,7 +23,7 @@ def RegisterPage():
         email = session['email']
 
         # render the dashboard page 
-        return render_template('dashboard.html')
+        return redirect(url_for('dashboard'))
     
     # Checking if the request was made to a post request 
     if request.method == 'POST': 
@@ -50,7 +48,7 @@ def RegisterPage():
             return jsonify({
                 "status": "error", 
                 "message": "The user already exists on the database"
-            }), 404
+            })
         
         else: 
             # Save the user on the database 
@@ -65,7 +63,7 @@ def RegisterPage():
             return jsonify({
                 "status": "success", 
                 "message": "User registered successfully",
-            }), 201 
+            })
 
 
 

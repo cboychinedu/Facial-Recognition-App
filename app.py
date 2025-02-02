@@ -6,6 +6,10 @@ import logging
 from flask import Flask, url_for, session 
 from flask_cors import CORS 
 from datetime import timedelta 
+from dotenv import load_dotenv 
+
+# loading the env 
+load_dotenv()
 
 # Importing the views 
 from Home.routes import home
@@ -16,7 +20,7 @@ from About.routes import about
 app = Flask(__name__, static_folder=None, template_folder=None) 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-app.secret_key = "kdsd8*DEKFE!@$#$$REDKDNI*(KEHE&E&^^$D"
+app.secret_key = os.getenv('SECRET_KEY')
 app.permanent_session_lifetime = timedelta(days=24)
 
 # Setting the cors application 
