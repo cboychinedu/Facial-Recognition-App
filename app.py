@@ -15,6 +15,7 @@ load_dotenv()
 from Home.routes import home
 from Register.routes import register
 from About.routes import about
+from Dashboard.routes import dashboard
 
 # Creating the flask application 
 app = Flask(__name__, static_folder=None, template_folder=None) 
@@ -30,6 +31,7 @@ CORS(app)
 app.register_blueprint(home, url_prefix="/")
 app.register_blueprint(about, url_prefix="/about")
 app.register_blueprint(register, url_prefix="/register")
+app.register_blueprint(dashboard, url_prefix="/dashboard")
 
 # Running the flask application 
 if __name__ == "__main__":

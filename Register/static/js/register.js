@@ -31,6 +31,7 @@ registerBtn.addEventListener("click", (event) => {
         'Access-Control-Allow-Headers': 'Content-Type',
     }
 
+    // Setting the url 
     const url = "/register/"; 
 
     // Making the fetch request to the backend server 
@@ -40,7 +41,8 @@ registerBtn.addEventListener("click", (event) => {
         url: url, 
         dataType: 'json', 
         contentType: 'application/json', 
-        data: data, 
+        data: data,
+        headers: headers,  
         crossDomain: true, 
     }).done((data) => {
         // 

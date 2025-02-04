@@ -38,7 +38,7 @@ def RegisterPage():
         cursor = conn.cursor()
 
         # Checking if the user is already registered on the database 
-        cursor.execute("SELECT * FROM users WHERE emailAddress = ?", (emailAddress,))
+        cursor.execute("SELECT emailAddress  FROM users WHERE emailAddress = ?", (emailAddress,))
         user = cursor.fetchall() 
 
         # If the user exists on the database, execute the block of code 
@@ -52,9 +52,13 @@ def RegisterPage():
         
         else: 
             # Save the user on the database 
+            # hash the password 
+            hashPassword = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(14))
+            hashPassword = hashPassword.decode('utf-8')
+
             cursor.execute("""
                 INSERT INTO users (firstname, lastname, emailAddress, password)
-                VALUES (?, ?, ?, ?)""", (firstname, lastname, emailAddress, password))
+                VALUES (?, ?, ?, ?)""", (firstname, lastname, emailAddress, hashPassword))
             
             # Commit the changes 
             conn.commit() 
