@@ -23,7 +23,7 @@ def RegisterPage():
         email = session['email']
 
         # render the dashboard page 
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard.Dashboard'))
     
     # Checking if the request was made to a post request 
     if request.method == 'POST': 

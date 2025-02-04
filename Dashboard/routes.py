@@ -17,6 +17,9 @@ def Dashboard():
     if 'email' in session: 
         email = session['email']
 
+
+        print(email)
+
         # Render the dashboard page 
         return render_template('Dashboard.html')
     

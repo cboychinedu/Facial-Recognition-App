@@ -43,7 +43,22 @@ loginBtn.addEventListener("click", (event) => {
         crossDomain: true, 
     })
     .done((data) => {
-        // 
-        console.log(data); 
+        // if the status message is success 
+        if (data["status"] === "success") {
+            setInterval(() => {
+                // redirect the user to the dashboard 
+                location.href = '/dashboard'
+            }, 1000)
+        } 
+
+        // Else if the status returned an error code 
+        else if (data.status ===  "error") {
+            // Execute the block of code below if the returned status code 
+            // was an error 
+            alert(data.message); 
+
+            // closing up 
+            return; 
+        }
     })
 })
