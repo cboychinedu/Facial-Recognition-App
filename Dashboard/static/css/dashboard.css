@@ -1,0 +1,100 @@
+* {
+    margin: 0px; 
+    padding: 0px; 
+    box-sizing: border-box;
+}
+p {
+    font-size: 13px;
+}
+body {
+    background-color: white;
+    color: black; 
+    font-family: 'Poppins';
+}
+.navDiv {
+    background: #1e1544;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.leftNav {
+    float: left;
+}
+.leftNav a {
+    text-decoration: none;
+    color: whitesmoke;
+    margin-left: 21px;
+    font-size: 13px;
+}
+.leftNav a:hover {
+    color: azure;
+    text-decoration: underline;
+}
+.mainSection,
+.videoMainSection {
+    height: 400px;
+    margin: auto;
+    margin-top: 20px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+.firstDescDiv {
+    margin: auto;
+    width: 60%;
+    margin-top: 80px;
+}
+.secondDescDiv {
+    margin: auto;
+    width: 60%;
+    margin-top: 50px;
+}
+.uploadImageDiv {
+    width: 30%;
+    height: 185px;
+    border: 1px solid #e3e2e2;
+    border-radius: 5px;
+}
+.analysisDiv {
+    width: 98%;
+    background-color: rgb(13, 13, 13);
+    height: 400px;
+    margin-left: 10px;
+}
+.uploadImage {
+    height: 106px;
+    width: 100%;
+}
+.uploadBtnDiv {
+    display: grid;
+}
+.selectImageBtn {
+    height: 30px;
+    color: white;
+    background: green;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid green;
+    font-size: 12px;
+}
+.uploadImageBtn {
+    height: 34px;
+    margin-top: 4px;
+    background: #488bff;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+}
+.webcam {
+    background: #28282d;
+    height: 100%;
+    width: 100%;
+}
+.videoMainSection {
+    margin-bottom: 100px;
+}
+

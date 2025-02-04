@@ -2,10 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="{{ url_for('.static', filename='js/ajax-min.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/dashboard.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Dashboard Page </title>
 </head>
 <body>
-    <p> Protected Page </p>
+    <!-- Adding the nav bar -->
+    <div class="navDiv"> 
+        <nav class="leftNav">
+            <a href="#"> Home </a>
+            <a href="#"> About Us </a>
+            <a href="#"> Contact Us </a>
+            <a href="/logout"> Logout </a>
+        </nav>
+    </div>
+
+    <!-- Description div -->
+    <div class="firstDescDiv"> 
+        <h3> Image Analysis </h3>
+        <p> 
+            Here, you analyze your image for facial recognition. 
+        </p>
+    </div>
+    
+    <!-- Adding the facial recognition div -->
+     <section class="mainSection"> 
+        <div class="uploadImageDiv"> 
+            <div> 
+                <img class="uploadImage" src="{{ url_for('.static', filename='images/upload.png')}}" alt="Upload Image"/> 
+            </div> 
+
+            <div class="uploadBtnDiv">
+                <input id="file" type="file" hidden/> 
+                <button id="selectImageBtn" class="selectImageBtn"> Select Image </button> 
+                <button id="uploadImageBtn" class="uploadImageBtn"> Upload Image </button> 
+            </div>
+
+        </div>
+        <div class="analysisDiv"> 
+
+        </div>
+     </section>
+
+
+    <!-- Description div -->
+    <div class="secondDescDiv"> 
+        <h3> Video Analysis </h3>
+        <p> 
+            Here, you analyze your video for facial recognition. 
+        </p>
+    </div>
+    
+    <!-- Adding the facial recognition div -->
+     <section class="videoMainSection"> 
+        <div class="analysisDiv"> 
+            <button id="startCameraBtn" class="startCameraBtn">Start Camera</button>
+            <video id="webcam" class="webcam" autoplay playsinline ></video>
+        </div>
+     </section>
+
+
+    <!-- Adding javascript -->
+    <script src="{{ url_for('.static', filename='js/dashboard.js') }}"></script>
 </body>
 </html>
