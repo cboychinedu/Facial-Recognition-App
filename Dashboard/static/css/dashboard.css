@@ -126,4 +126,10 @@ body {
     font-family: 'Poppins';
     font-size: 13px;
 }
+.imageAnalysis {
+    width: 85%;
+    height: 94%;
+    margin-left: 43px;
+    margin-top: 10px;
+}
 

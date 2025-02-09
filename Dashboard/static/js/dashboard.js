@@ -4,6 +4,7 @@ const selectImageBtn = document.getElementById("selectImageBtn");
 const uploadImageBtn = document.getElementById("uploadImageBtn"); 
 const startCameraBtn = document.getElementById('startCameraBtn'); 
 const stopCameraBtn = document.getElementById('stopCameraBtn'); 
+const imageAnalysis = document.getElementById("imageAnalysis"); 
 
 // Setting the video stream as null 
 let videoStream = null;
@@ -11,6 +12,31 @@ let videoStream = null;
 // Adding event listener for the select image buttons 
 selectImageBtn.addEventListener("click", (event) => {
     fileBtn.click(); 
+})
+
+// Setting event listener for the upload button 
+uploadImageBtn.addEventListener("click", (event) => {
+    // Execute this block of code below if the upload image button 
+    // was clicked 
+    const file = fileBtn.files[0]; 
+    let formData = new FormData(); 
+
+    // Appending the file into the form data before sending it back 
+    // to the server 
+    formData.append('image', file); 
+
+    // Using fetch request 
+    fetch('/dashboard/processImage', {
+        method: 'POST', 
+        body: formData
+    })
+    .then(response => response.json())
+    .then((data) => {
+        // if the processed image is present 
+        if (data.processedImage) {
+            imageAnalysis.src = data.processedImage; 
+        }
+    })
 })
 
 // Adding event listener for the start camera button 
