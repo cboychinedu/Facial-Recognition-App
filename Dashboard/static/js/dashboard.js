@@ -1,22 +1,41 @@
+// Getting the dom elements 
+const fileBtn = document.getElementById("file"); 
+const selectImageBtn = document.getElementById("selectImageBtn"); 
+const uploadImageBtn = document.getElementById("uploadImageBtn"); 
+const startCameraBtn = document.getElementById('startCameraBtn'); 
+const stopCameraBtn = document.getElementById('stopCameraBtn'); 
+
+// Setting the video stream as null 
 let videoStream = null;
 
-document.getElementById('startCameraBtn').addEventListener('click', function() {
+// Adding event listener for the select image buttons 
+selectImageBtn.addEventListener("click", (event) => {
+    fileBtn.click(); 
+})
+
+// Adding event listener for the start camera button 
+startCameraBtn.addEventListener('click', function() {
+
+    // Getting the dom elements 
     const video = document.getElementById('webcam');
     const img = document.getElementById('processedVideo');
+
+    // Starting the video 
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            video.srcObject = stream;
-            video.style.display = 'block';
-            img.style.display = 'block';
-            videoStream = stream;
-            processVideo();
-        })
-        .catch(function(error) {
-            console.error("Error accessing webcam:", error);
-        });
+    .then(function(stream) {
+        video.srcObject = stream;
+        video.style.display = 'block';
+        img.style.display = 'block';
+        videoStream = stream;
+        processVideo();
+    })
+    .catch(function(error) {
+        console.error("Error accessing webcam:", error);
+    });
 });
 
-document.getElementById('stopCameraBtn').addEventListener('click', function() {
+// Setting an event listener for stoping the camera
+stopCameraBtn.addEventListener('click', function() {
     if (videoStream) {
         videoStream.getTracks().forEach(track => track.stop());
         document.getElementById('webcam').srcObject = null;
@@ -24,19 +43,29 @@ document.getElementById('stopCameraBtn').addEventListener('click', function() {
     }
 });
 
-function processVideo() {
+// Creating a function for processing the video 
+const processVideo = () => {
+    // Getting the webcam, canvas and processed video dom elements 
     const video = document.getElementById('webcam');
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     const img = document.getElementById('processedVideo');
 
-    function captureFrame() {
+    // Creating a function called capture frame for capturing 
+    // the web frames
+    const captureFrame = () => {
+        // if there is no video 
         if (!videoStream) return;
+
+        // Get the video width and height
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
+
+        // draw the image, and convert it into a dataurl image 
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         const frame = canvas.toDataURL('image/jpeg');
 
+        // Send the image to the backend for further preprocessing 
         fetch('/dashboard/processFrame', {
             method: 'POST',
             body: JSON.stringify({ image: frame }),
@@ -44,15 +73,19 @@ function processVideo() {
         })
         .then(response => response.json())
         .then(data => {
+            // if the response has the preprocessed image, display the image 
+            // inside the img tag
             if (data.processedImage) img.src = data.processedImage;
             setTimeout(captureFrame, 100);
         })
         .catch(error => console.error("Error processing frame:", error));
     }
 
+    // Start the function capture frame 
     captureFrame();
 }
 
+// 
 window.addEventListener('beforeunload', function() {
     if (videoStream) videoStream.getTracks().forEach(track => track.stop());
 });
