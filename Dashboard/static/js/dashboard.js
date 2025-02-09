@@ -1,28 +1,58 @@
-// Getting the DOM elements 
-const startCameraBtn = document.getElementById('startCameraBtn'); 
-const stopCameraBtn = document.getElementById("stopCameraBtn");
-const video = document.getElementById('webcam'); 
+let videoStream = null;
 
-let stream = null; // Store the stream globally
-
-// Start the camera 
-startCameraBtn.addEventListener('click', function() {
+document.getElementById('startCameraBtn').addEventListener('click', function() {
+    const video = document.getElementById('webcam');
+    const img = document.getElementById('processedVideo');
     navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(mediaStream) {
-            stream = mediaStream; // Store the stream
+        .then(function(stream) {
             video.srcObject = stream;
             video.style.display = 'block';
+            img.style.display = 'block';
+            videoStream = stream;
+            processVideo();
         })
         .catch(function(error) {
             console.error("Error accessing webcam:", error);
         });
 });
 
-// Stop the camera
-stopCameraBtn.addEventListener('click', function() {
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop()); // Stop all tracks
-        video.srcObject = null; // Remove the video source
-        video.style.display = 'block';
+document.getElementById('stopCameraBtn').addEventListener('click', function() {
+    if (videoStream) {
+        videoStream.getTracks().forEach(track => track.stop());
+        document.getElementById('webcam').srcObject = null;
+        document.getElementById('processedVideo').style.display = 'none';
     }
+});
+
+function processVideo() {
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const img = document.getElementById('processedVideo');
+
+    function captureFrame() {
+        if (!videoStream) return;
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const frame = canvas.toDataURL('image/jpeg');
+
+        fetch('/dashboard/processFrame', {
+            method: 'POST',
+            body: JSON.stringify({ image: frame }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.processedImage) img.src = data.processedImage;
+            setTimeout(captureFrame, 100);
+        })
+        .catch(error => console.error("Error processing frame:", error));
+    }
+
+    captureFrame();
+}
+
+window.addEventListener('beforeunload', function() {
+    if (videoStream) videoStream.getTracks().forEach(track => track.stop());
 });

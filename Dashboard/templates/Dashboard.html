@@ -63,7 +63,12 @@
                 <button id="stopCameraBtn" class="stopCameraBtn">Stop Camera</button>
             </div>
 
-            <video id="webcam" class="webcam" autoplay playsinline ></video>
+
+            <div class="videoDiv">
+                <video id="webcam" class="webcam" autoplay playsinline ></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <img id="processedVideo" class="analyzedFrames"/>
+            </div>
         </div>
      </section>
 
